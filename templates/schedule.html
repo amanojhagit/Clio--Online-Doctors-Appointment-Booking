@@ -1,0 +1,159 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Appointment - Area | Dashboard</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link href="{% static 'css/dashboard.css' %}" rel="stylesheet"> -->
+    <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">CLI'O</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Welcome <span class="sr-only">{{ user.first_name }}</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="main">
+        <div class="container mt-xl-3 pt-xl-5">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <li class="list-group-item active main-color-bg">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
+                        </li>
+                        <li class="list-group-item  ">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span><a href="/">Appointments</a>
+                        </li>
+                        <li class="list-group-item"><a type="button" data-toggle="modal" data-target="#addPage">Add Schedule</a></li>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <!-- Website Overview -->
+
+
+
+                    <!-- Latest Users -->
+                    <div class="panel panel-default mt-xl-5">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">My Schedule</h3>
+                        </div>
+                        <div class="panel-body mt-xl-3">
+                            <table class="table table-striped table-hover">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
+                                    <th>Active</th>
+                                    <th>Action</th>
+
+                                </tr>
+                                <tr>
+                                    {% for app in apps %}
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{app.startTime}}</td>
+                                    <td>{{app.endTime}}</td>
+                                    <th>{{app.isActive }}</th>
+                                    <th><a href="updateSchedule/{{app.id}}" class="btn btn-sm btn-outline-danger">Off</a></th>
+                                </tr>
+                                {% endfor %}
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <footer id="footer">
+      <p>Copyright AdminStrap, &copy; 2017</p>
+    </footer>-->
+
+    <!-- Modals -->
+
+    <!-- Add Page -->
+    <div class="modal fade" id="addPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Add Event</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                </div>
+                <div class="modal-body">
+                    <h1>Please Note: All the appointment will be scheduled as per todays date </h1>
+                    <div class="text-center">
+                        <a href="addSchedule/1"><button class="btn btn-sm btn-outline-success" id="1T">9:00 AM - 9:15 AM</button></a>
+                        <a href="addSchedule/2"><button class="btn btn-sm btn-outline-success" id="2T">9:15 AM - 9:30 AM</button></a>
+                        <a href="addSchedule/3"><button class="btn btn-sm btn-outline-success" id="3T">9:30 AM - 9:45 AM</button></a>
+                        <a href="addSchedule/4"><button class="btn btn-sm btn-outline-success" id="4T">9:45AM - 10:00AM</button></a>
+                        <a href="addSchedule/5"><button class="btn btn-sm btn-outline-success" id="5T">10:00AM-10:15AM</button></a>
+                        <a href="addSchedule/6"><button class="btn btn-sm btn-outline-success" id="6T">10:15AM-10:30AM</button></a>
+                        <a href="addSchedule/7"><button class="btn btn-sm btn-outline-success" id="7T">10:30AM-10:45AM</button></a>
+                        <a href="addSchedule/8"><button class="btn btn-sm btn-outline-success" id="8T">10:45AM-11:00AM</button></a>
+                        <a href="addSchedule/9"><button class="btn btn-sm btn-outline-success" id="9T">11:00AM - 11:15AM</button></a>
+                        <a href="addSchedule/10"><button class="btn btn-sm btn-outline-success" id="10T">11:15AM - 11:30AM</button></a>
+                        <a href="addSchedule/11"><button class="btn btn-sm btn-outline-success" id="11T">11:30AM - 11:45AM</button></a>
+                        <a href="addSchedule/12"><button class="btn btn-sm btn-outline-success" id="12T">11:45AM-12:00PM</button></a>
+                        <a href="addSchedule/13"><button class="btn btn-sm btn-outline-success" id="13T">1:30PM - 1:45PM</button></a>
+                        <a href="addSchedule/14"><button class="btn btn-sm btn-outline-success" id="14T">1:45PM - 2:00PM</button></a>
+                        <a href="addSchedule/15"><button class="btn btn-sm btn-outline-success" id="15T">2:00PM - 2:15PM</button></a>
+                        <a href="addSchedule/16"><button class="btn btn-sm btn-outline-success" id="16T">2:15PM - 2:30PM</button></a>
+                        <a href="addSchedule/17"><button class="btn btn-sm btn-outline-success" id="17T">2:30PM - 2:45PM</button></a>
+                        <a href="addSchedule/18"><button class="btn btn-sm btn-outline-success" id="18T">2:45PM - 3:00PM</button></a>
+                        <a href="addSchedule/19"><button class="btn btn-sm btn-outline-success" id="19T">3:00PM - 3:15PM</button></a>
+                        <a href="addSchedule/20"><button class="btn btn-sm btn-outline-success" id="20T">3:15PM - 3:30PM</button></a>
+                        <a href="addSchedule/21"><button class="btn btn-sm btn-outline-success" id="21T">3:30PM - 3:45PM</button></a>
+                        <a href="addSchedule/22"><button class="btn btn-sm btn-outline-success" id="22T">3:45PM - 4:00PM</button></a>
+                        <a href="addSchedule/23"><button class="btn btn-sm btn-outline-success" id="23T">5:00PM - 5:15PM</button></a>
+                        <a href="addSchedule/24"><button class="btn btn-sm btn-outline-success" id="24T">5:15PM - 5:30PM</button></a>
+                        <a href="addSchedule/25"><button class="btn btn-sm btn-outline-success" id="25T">5:30PM - 5:45PM</button></a>
+                        <a href="addSchedule/26"><button class="btn btn-sm btn-outline-success" id="26T">5:45PM - 6:00PM</button></a>
+                        <a href="addSchedule/27"><button class="btn btn-sm btn-outline-success" id="27T">6:15PM - 6:30PM</button></a>
+                        <a href="addSchedule/28"><button class="btn btn-sm btn-outline-success" id="28T">6:30PM - 6:45PM</button></a>
+                        <a href="addSchedule/29"><button class="btn btn-sm btn-outline-success" id="29T">6:45PM - 7:00PM</button></a>
+
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        CKEDITOR.replace('editor1');
+    </script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>%
